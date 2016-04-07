@@ -16,7 +16,11 @@ typealias ServiceResponse = (JSON, NSError?) -> Void
 
 let fourSquareConsumerKey = "NQ55EOG3LNQ54CG3GGI5QGBO00OGPVOOZ21HSAQXITNEYLAP"
 let fourSquareConsumerSecret = "S3EDWKFSATYEWMJXTTCMIYMSWOZGEPHNP0DZU0YYNVU1VIPU"
-//let fourSquareBaseURL = NSURL(string: "https://api.foursquare.com/")
+//let latitude = 40.7
+//let longitude = -74
+//let date = 20160406
+
+let fourSquareBaseURL = NSURL(string: "https://api.foursquare.com/")
 
 
 class FourSquareClient: BDBOAuth1SessionManager {
@@ -35,6 +39,11 @@ class FourSquareClient: BDBOAuth1SessionManager {
         })
     }
     
+    
+//    let fourSquareFullURL = "(\fourSquareBaseURL
+//    
+//    https://api.foursquare.com/v2/venues/search?ll=37.75,-122.42&client_id=NQ55EOG3LNQ54CG3GGI5QGBO00OGPVOOZ21HSAQXITNEYLAP&client_secret=S3EDWKFSATYEWMJXTTCMIYMSWOZGEPHNP0DZU0YYNVU1VIPU&v=20160406"
+    
     private func makeHTTPGetRequest(path: String, onCompletion: ServiceResponse) {
         let request = NSMutableURLRequest(URL: NSURL(string: path)!)
         
@@ -43,7 +52,8 @@ class FourSquareClient: BDBOAuth1SessionManager {
         let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if let jsonData = data {
                 let json:JSON = JSON(data: jsonData)
-                print("Success")
+                print("Success fully made network request")
+               // print(json) // use this to test if call works successfully
                 onCompletion(json, error)
             } else {
                 onCompletion(nil, error)
@@ -55,11 +65,11 @@ class FourSquareClient: BDBOAuth1SessionManager {
     
     
     
+   
+    
 
     // properties for constructing URL
-//    let latitude = 40.7
-//    let longitude = -74
-//    let date = 20160406
+//
 }
 
 /*

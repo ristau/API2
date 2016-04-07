@@ -27,7 +27,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         FourSquareClient.sharedInstance.fetchNetworkData({ (json: JSON) in
             if let results = json["results"].array {
                 for entry in results {
-                    self.items.append(FourSquareModel(json: entry["venue"]))
+                    self.items.append(FourSquareModel(jsonData: entry["venue"]))
                     print(results)
                 }
                 dispatch_async(dispatch_get_main_queue(),{
