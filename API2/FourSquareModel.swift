@@ -40,7 +40,7 @@ class FourSquareModel: NSObject {
     
     
     class func venueWithArray(array: [NSDictionary]) -> [FourSquareModel] {
-        //array.forEach{ print($0.text) }
+       // array.forEach{ print($0.text) }
         return array.map{ FourSquareModel(jsonData: JSON($0)) }
     }
     
